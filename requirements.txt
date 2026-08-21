@@ -1,0 +1,4 @@
+# Runtime dependencies for the macro recorder/player.
+# Tkinter ships with the standard CPython installer on Windows, so it is not
+# listed here.
+pynput>=1.7.6
