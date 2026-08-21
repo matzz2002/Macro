@@ -1,0 +1,58 @@
+{
+  "version": 1,
+  "name": "Sample Notepad Greeting",
+  "created_at": "2026-08-21T00:00:00+00:00",
+  "duration": 0.35,
+  "events": [
+    {
+      "time": 0.0,
+      "type": "key_down",
+      "data": {
+        "key": "h"
+      }
+    },
+    {
+      "time": 0.05,
+      "type": "key_up",
+      "data": {
+        "key": "h"
+      }
+    },
+    {
+      "time": 0.1,
+      "type": "key_down",
+      "data": {
+        "key": "i"
+      }
+    },
+    {
+      "time": 0.15,
+      "type": "key_up",
+      "data": {
+        "key": "i"
+      }
+    },
+    {
+      "time": 0.2,
+      "type": "key_down",
+      "data": {
+        "key": "enter"
+      }
+    },
+    {
+      "time": 0.25,
+      "type": "key_up",
+      "data": {
+        "key": "enter"
+      }
+    },
+    {
+      "time": 0.35,
+      "type": "mouse_move",
+      "data": {
+        "x": 500,
+        "y": 300
+      }
+    }
+  ]
+}

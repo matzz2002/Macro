@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "win10-keyboard-mouse-macro"
+version = "0.1.0"
+description = "A Windows 10 keyboard and mouse macro recorder/player with GUI and CLI."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "pynput",
+    "pyautogui",
+]
+
+[project.scripts]
+win10-macro = "macro_win10.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["macro_win10*"]
