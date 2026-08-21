@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "macros": {
+    "open_notepad_and_type": [
+      {
+        "type": "hotkey",
+        "keys": ["win", "r"]
+      },
+      {
+        "type": "type",
+        "text": "notepad"
+      },
+      {
+        "type": "press",
+        "key": "enter"
+      },
+      {
+        "type": "wait",
+        "seconds": 1
+      },
+      {
+        "type": "type",
+        "text": "Hello from a Windows 10 keyboard and mouse macro!"
+      }
+    ],
+    "mouse_demo": [
+      {
+        "type": "mouse_move",
+        "x": 600,
+        "y": 400,
+        "duration": 0.25
+      },
+      {
+        "type": "mouse_click",
+        "button": "left",
+        "clicks": 1
+      },
+      {
+        "type": "mouse_scroll",
+        "amount": -3
+      }
+    ]
+  }
+}
