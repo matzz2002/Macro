@@ -1,35 +1,8 @@
-# MacroForge - Windows 10 Keyboard and Mouse Macro Studio
+# Windows 10 Keyboard and Mouse Macro Player
 
-MacroForge is a local desktop application for creating, recording, editing and
-playing keyboard and mouse macros on Windows 10. It includes profiles, global
-hotkeys, a panic key, macro import/export, autosave, tray support and a modern
-dark interface.
-
-The repository also keeps the smaller `macro.py` CLI macro player as an extra
-tool, but the full desktop application starts from `run_app.py`.
-
-## Project architecture
-
-```text
-macro_app/
-  app.py                 PySide6 application entry point
-  models.py              profiles, macros, actions, settings dataclasses
-  storage.py             local JSON storage plus import/export
-  validation.py          hotkey parsing, validation and conflict detection
-  hotkeys.py             global keyboard/mouse hotkey listener
-  recorder.py            explicit keyboard/mouse recorder
-  player.py              threaded macro playback engine
-  settings_manager.py    Windows startup integration
-  action_tools.py        labels, defaults and batch delay editing
-  ui/
-    main_window.py       full desktop GUI, tray, profiles and action editor
-    commands.py          undo/redo commands for action edits
-    theme.py             light and dark styles
-run_app.py               desktop launcher
-macro.py                 standalone CLI macro player
-requirements.txt         runtime/build dependencies
-build_exe.bat            Windows EXE build helper
-```
+This repository contains a small Python program for replaying keyboard and
+mouse macros on Windows 10. Macros are written in JSON and executed with the
+native Windows `SendInput` API, so no third-party packages are required.
 
 ## Requirements
 
@@ -121,6 +94,9 @@ You can also run PyInstaller manually:
 ```powershell
 python -m PyInstaller --noconfirm --windowed --name MacroForge run_app.py
 ```
+
+Real macro playback only works on Windows. The `--dry-run` option works on any
+platform and prints what would happen without controlling the keyboard or mouse.
 
 ## Quick start
 
