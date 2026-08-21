@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "macro-recorder"
+version = "1.0.0"
+description = "Record and replay keyboard & mouse macros on Windows 10 (and other desktops)."
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+dependencies = ["pynput>=1.7.6"]
+
+[project.scripts]
+macro-recorder = "macro_recorder.cli:main"
+
+[project.gui-scripts]
+macro-recorder-gui = "macro_recorder.gui:run"
+
+[tool.setuptools]
+packages = ["macro_recorder"]

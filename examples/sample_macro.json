@@ -1,0 +1,19 @@
+{
+  "name": "Type hello and click",
+  "version": 1,
+  "events": [
+    { "type": "key", "time": 0.10, "key": "h", "pressed": true },
+    { "type": "key", "time": 0.15, "key": "h", "pressed": false },
+    { "type": "key", "time": 0.25, "key": "e", "pressed": true },
+    { "type": "key", "time": 0.30, "key": "e", "pressed": false },
+    { "type": "key", "time": 0.40, "key": "l", "pressed": true },
+    { "type": "key", "time": 0.45, "key": "l", "pressed": false },
+    { "type": "key", "time": 0.55, "key": "l", "pressed": true },
+    { "type": "key", "time": 0.60, "key": "l", "pressed": false },
+    { "type": "key", "time": 0.70, "key": "o", "pressed": true },
+    { "type": "key", "time": 0.75, "key": "o", "pressed": false },
+    { "type": "mouse_move", "time": 1.00, "x": 400, "y": 300 },
+    { "type": "mouse_click", "time": 1.20, "x": 400, "y": 300, "button": "Button.left", "pressed": true },
+    { "type": "mouse_click", "time": 1.30, "x": 400, "y": 300, "button": "Button.left", "pressed": false }
+  ]
+}
