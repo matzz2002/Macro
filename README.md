@@ -1,16 +1,126 @@
-# Windows 10 Keyboard and Mouse Macro Player
+# MacroForge - Windows 10 Keyboard and Mouse Macro Studio
 
-This repository contains a small Python program for replaying keyboard and
-mouse macros on Windows 10. Macros are written in JSON and executed with the
-native Windows `SendInput` API, so no third-party packages are required.
+MacroForge is a local desktop application for creating, recording, editing and
+playing keyboard and mouse macros on Windows 10. It includes profiles, global
+hotkeys, a panic key, macro import/export, autosave, tray support and a modern
+dark interface.
+
+The repository also keeps the smaller `macro.py` CLI macro player as an extra
+tool, but the full desktop application starts from `run_app.py`.
+
+## Project architecture
+
+```text
+macro_app/
+  app.py                 PySide6 application entry point
+  models.py              profiles, macros, actions, settings dataclasses
+  storage.py             local JSON storage plus import/export
+  validation.py          hotkey parsing, validation and conflict detection
+  hotkeys.py             global keyboard/mouse hotkey listener
+  recorder.py            explicit keyboard/mouse recorder
+  player.py              threaded macro playback engine
+  settings_manager.py    Windows startup integration
+  action_tools.py        labels, defaults and batch delay editing
+  ui/
+    main_window.py       full desktop GUI, tray, profiles and action editor
+    commands.py          undo/redo commands for action edits
+    theme.py             light and dark styles
+run_app.py               desktop launcher
+macro.py                 standalone CLI macro player
+requirements.txt         runtime/build dependencies
+build_exe.bat            Windows EXE build helper
+```
 
 ## Requirements
 
 - Windows 10
 - Python 3.9 or newer
+- Dependencies from `requirements.txt`
 
-Real macro playback only works on Windows. The `--dry-run` option works on any
-platform and prints what would happen without controlling the keyboard or mouse.
+Global input recording/playback is intended for Windows. Logic tests and the
+CLI `--dry-run` mode can run on other platforms.
+
+## Run the desktop application
+
+1. Install Python for Windows and make sure `python` or `py -3` works in
+   PowerShell.
+2. Install dependencies:
+
+   ```powershell
+   python -m pip install -r requirements.txt
+   ```
+
+   If your system uses the Windows launcher:
+
+   ```powershell
+   py -3 -m pip install -r requirements.txt
+   ```
+
+3. Start the app:
+
+   ```powershell
+   python run_app.py
+   ```
+
+   or:
+
+   ```powershell
+   py -3 run_app.py
+   ```
+
+## Desktop app workflow
+
+1. Select or create a profile in the left panel.
+2. Create a macro with **+ Nowe makro**.
+3. Enter a macro name, color, icon text and global hotkey.
+4. Choose the run mode:
+   - `Wykonaj raz`
+   - `Powtórz N razy`
+   - `Powtarzaj do skrótu`
+   - `Powtarzaj podczas trzymania`
+5. Click **Nagrywaj** to capture keyboard and mouse input. Enable
+   **Nagrywaj ruchy myszy** if mouse movement should be stored too.
+6. Click **Zatrzymaj nagrywanie** to finish. Actions appear in the timeline.
+7. Edit actions in the center list or the right properties panel.
+8. Use **Odtwórz** to run the macro and **Zatrzymaj** or the panic key to stop.
+9. Changes are saved automatically to the user data folder.
+
+The default panic key is `F12`. You can change it in the top toolbar.
+
+## Supported desktop features
+
+- Profiles: create, rename, duplicate, delete, import and export.
+- Macros: create, duplicate, delete, search, sort, import and export.
+- Global hotkeys: function keys, combinations like `Ctrl+Shift+X`, `Alt+F1`,
+  and `Mouse Button 4` / `Mouse Button 5`.
+- Recorder: key down/up, mouse clicks, optional mouse moves and action delays.
+- Editor: add, edit, delete, copy, move and drag actions.
+- Undo/redo for action-list changes.
+- Delay editing in milliseconds, random delay ranges and batch delay scaling.
+- Loop action with editable nested JSON action body.
+- Tray icon: restore UI, stop macros or quit fully.
+- Startup with Windows through the current user's Run registry key.
+- Dark mode by default plus light mode.
+
+## Build a Windows EXE
+
+On Windows, run:
+
+```powershell
+build_exe.bat
+```
+
+The executable will be created under:
+
+```text
+dist\MacroForge\MacroForge.exe
+```
+
+You can also run PyInstaller manually:
+
+```powershell
+python -m PyInstaller --noconfirm --windowed --name MacroForge run_app.py
+```
 
 ## Quick start
 
